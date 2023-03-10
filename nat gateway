@@ -1,0 +1,17 @@
+Resources:
+   NATGateway:
+      Type: AWS::EC2::NatGateway
+      Properties:
+         AllocationId: !GetAtt NATGatewayEIP.AllocationId
+         SubnetId: subnet-0d8b28a5531ae8603  
+   NATGatewayEIP:
+      Type: AWS::EC2::EIP
+      Properties:
+         Domain: vpc
+   RouteNATGateway:
+      DependsOn: NATGateway
+      Type: AWS::EC2::Route
+      Properties:
+         RouteTableId: rtb-0f983addaea36172c
+         DestinationCidrBlock: '0.0.0.0/0'
+         NatGatewayId: !Ref NATGateway

@@ -1,0 +1,6 @@
+Resources:
+  MyEIP:
+    Type: AWS::EC2::EIP
+Outputs:
+  MyEIPAllocationID:
+    Value: !GetAtt MyEIP.AllocationId
